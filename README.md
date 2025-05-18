@@ -17,7 +17,6 @@ MatchaMe is designed to be flexible and extensible. It serves as a launching poi
 
 ### 1. Clone the Repository
 
-```bash
 git clone https://github.com/yourusername/MatchaMe.git
 cd MatchaMe
 
