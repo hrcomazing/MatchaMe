@@ -6,10 +6,15 @@ A modular Python project built to run and orchestrate different components — f
 
 ## Overview
 
-MatchaMe is designed to be flexible and extensible. It serves as a launching point for:
-- Data workflows
-- Multi-language automation (e.g., Python + shell + JavaScript)
-- Modular applications or pipelines
+MatchaMe started as a simple environment template and now contains a minimal prototype of a dating app.  The logic lives in `matcha_app.py` and demonstrates how daily matching and weekly roster checks can work.
+
+Core ideas implemented:
+- The AI agent pairs available users once per day.
+- Each match lasts for a week of chatting.
+- During that week you can add your partner to a three-person "roster" of favorites.
+- If both people still have each other on their roster at week's end, the chat persists; otherwise it is removed.
+
+While not a production web service, this code offers a starting point for experimenting with the matchmaking rules.
 
 ---
 
