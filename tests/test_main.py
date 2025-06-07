@@ -1,13 +1,14 @@
-import os
-import sys
-import unittest
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "code")))
+import random
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "code"))
+
 from matcha_app import MatchaApp
 
 class TestMatchaApp(unittest.TestCase):
     def setUp(self):
         """Set up a fresh instance of MatchaApp for each test."""
+        random.seed(0)
         self.app = MatchaApp()
         self.app.register("alice", {"bio": "Loves hiking"})
         self.app.register("bob", {"bio": "Enjoys cooking"})
@@ -19,9 +20,12 @@ class TestMatchaApp(unittest.TestCase):
         """Test daily matching functionality."""
         self.app.daily_match()
         users = self.app.users
-        for user in users.values():
-            self.assertIsNotNone(user.current_match, f"{user.username} should have a match.")
-            self.assertIn(user.current_match, users, f"{user.username}'s match should be a registered user.")
+        matched = [u for u in users.values() if u.current_match]
+        # With three registered users only two should be paired
+        self.assertEqual(len(matched), 2)
+        u1, u2 = matched
+        self.assertEqual(u1.current_match, u2.username)
+        self.assertEqual(u2.current_match, u1.username)
 
     def test_like_user(self):
         """Test liking a user."""
@@ -39,7 +43,8 @@ class TestMatchaApp(unittest.TestCase):
         self.app.send_message("alice", f"Hi {alice_match}!")
         chat_key = tuple(sorted(["alice", alice_match]))
         self.assertIn(chat_key, self.app.chats, "Chat should exist between Alice and her match.")
-        self.assertIn(("alice", f"Hi {alice_match}!"), self.app.chats[chat_key], "Message should be in the chat.")
+        self.assertIn(("alice", f"Hi {alice_match}!"), self.app.chats[chat_key],
+                      "Message should be in the chat.")
 
     def test_end_of_week(self):
         """Test end-of-week functionality."""
