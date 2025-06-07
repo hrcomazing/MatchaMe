@@ -33,7 +33,11 @@ conda env create -f environment.yml
 conda activate matchame-env
 
 ## Usage
-python main.py
+Run the demo from the `code` directory:
+
+```bash
+python code/main.py
+```
 
 ## Environment
 
