@@ -1,12 +1,13 @@
 MatchaMe/
 ├── code/
 │   ├── matcha_app.py
+|       └── User
+|       └── MatchaApp
 │   ├── main.py
-│       └── __init__.py
+│       └── __name__ == "__main__"
 ├── tests/
 │   ├── test_main.py
-│   ├── test_matcha_app.py
-│       └── __init__.py
+│       └── __name__ == "__main__"
 ├── environment.yml
 ├── README.md
 ├── PROJECT_STRUCTURE.md
