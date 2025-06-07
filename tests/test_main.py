@@ -1,7 +1,8 @@
-import unittest
+
 import random
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "code"))
+
 from matcha_app import MatchaApp
 
 class TestMatchaApp(unittest.TestCase):
@@ -12,6 +13,8 @@ class TestMatchaApp(unittest.TestCase):
         self.app.register("alice", {"bio": "Loves hiking"})
         self.app.register("bob", {"bio": "Enjoys cooking"})
         self.app.register("carol", {"bio": "Reads a lot"})
+        # Include an even number of users so everyone can be matched
+        self.app.register("dave", {"bio": "Plays guitar"})
 
     def test_daily_match(self):
         """Test daily matching functionality."""
