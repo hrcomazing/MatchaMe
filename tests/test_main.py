@@ -5,7 +5,7 @@ import sys, os
 import unittest
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "code"))
 
-from matcha_app import MatchaApp
+from matcha_app import MatchaApp # type: ignore
 
 class TestMatchaApp(unittest.TestCase):
     def setUp(self):
