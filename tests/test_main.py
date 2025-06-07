@@ -2,6 +2,7 @@
 
 import random
 import sys, os
+import unittest
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "code"))
 
 from matcha_app import MatchaApp
@@ -22,11 +23,12 @@ class TestMatchaApp(unittest.TestCase):
         self.app.daily_match()
         users = self.app.users
         matched = [u for u in users.values() if u.current_match]
-        # With three registered users only two should be paired
-        self.assertEqual(len(matched), 2)
-        u1, u2 = matched
-        self.assertEqual(u1.current_match, u2.username)
-        self.assertEqual(u2.current_match, u1.username)
+        # With four registered users everyone should be paired
+        self.assertEqual(len(matched), 4)
+        # Each pair should reference one another
+        for user in matched:
+            partner = self.app.users[user.current_match]
+            self.assertEqual(partner.current_match, user.username)
 
     def test_like_user(self):
         """Test liking a user."""
