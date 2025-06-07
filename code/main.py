@@ -7,7 +7,7 @@ except ModuleNotFoundError:
     np = None
     print("Numpy is not installed. Continuing without it.")
 
-from code.matcha_app import MatchaApp
+from matcha_app import MatchaApp
 
 
 def main():
