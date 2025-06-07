@@ -1,5 +1,5 @@
 import unittest
-from matcha_app import MatchaApp
+from code.matcha_app import MatchaApp
 
 class TestMatchaApp(unittest.TestCase):
     def setUp(self):
